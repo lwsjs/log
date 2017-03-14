@@ -8,7 +8,7 @@
   "main": "./lib/log.js",
   "keywords": [],
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=7.6.0"
   },
   "scripts": {
     "test": "tape test/*.js",
@@ -16,6 +16,6 @@
   },
   "dependencies": {
     "koa-morgan": "^1.0.1",
-    "stream-log-stats": "^1.1.6"
+    "stream-log-stats": "^1.1.7"
   }
 }
