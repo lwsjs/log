@@ -3,7 +3,7 @@
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "version": "0.0.0",
   "description": "log",
-  "repository": "https://github.com/local-web-server/log.git",
+  "repository": "https://github.com/lwsjs/log.git",
   "license": "MIT",
   "main": "./lib/log.js",
   "keywords": [],
