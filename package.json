@@ -16,6 +16,6 @@
   },
   "dependencies": {
     "koa-morgan": "^1.0.1",
-    "stream-log-stats": "^1.1.7"
+    "stream-log-stats": "^2.0.0"
   }
 }
