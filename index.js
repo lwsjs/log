@@ -1,6 +1,14 @@
 'use strict'
 const EventEmitter = require('events')
 
+/**
+ * Logging feature for [lws](https://github.com/lwsjs/lws).
+ * @module lws-log
+ */
+
+/**
+ * @alias module:lws-log
+ */
 class Log extends EventEmitter {
   optionDefinitions () {
     return {
@@ -10,6 +18,13 @@ class Log extends EventEmitter {
       description: "If a format is supplied an access log is written to stdout. If not, a dynamic statistics view is displayed. Use a preset ('none', 'dev','combined', 'short', 'tiny', 'stats', or 'logstalgia') or supply a custom format (e.g. ':method -> :url')."
     }
   }
+
+  /**
+   * @param [options] {object}
+   * @param [options.log.format] {string}
+   * @emits log
+   * @emits start 
+   */
   middleware (options) {
     let format = options['log.format'] || 'stats'
 

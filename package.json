@@ -2,17 +2,17 @@
   "name": "lws-log",
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "version": "0.1.1",
-  "description": "log",
+  "description": "Logging feature for lws",
   "repository": "https://github.com/lwsjs/log.git",
   "license": "MIT",
-  "main": "./lib/log.js",
-  "keywords": [],
+  "main": "index",
+  "keywords": [ "lws", "log", "lws-feature" ],
   "engines": {
     "node": ">=7.6.0"
   },
   "scripts": {
-    "test": "tape test/*.js",
-    "docs": "jsdoc2md -t jsdoc2md/README.md lib/*.js > README.md; echo"
+    "test": "test-runner test.js",
+    "docs": "jsdoc2md --template README.hbs index.js  > README.md; echo"
   },
   "dependencies": {
     "koa-morgan": "^1.0.1",
