@@ -5,8 +5,11 @@
   "description": "Logging feature for lws",
   "repository": "https://github.com/lwsjs/log.git",
   "license": "MIT",
-  "main": "index",
-  "keywords": [ "lws", "log", "lws-feature" ],
+  "keywords": [
+    "lws",
+    "log",
+    "lws-feature"
+  ],
   "engines": {
     "node": ">=7.6.0"
   },
@@ -16,6 +19,6 @@
   },
   "dependencies": {
     "koa-morgan": "^1.0.1",
-    "stream-log-stats": "^2.0.0"
+    "stream-log-stats": "^2.0.2"
   }
 }
