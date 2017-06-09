@@ -1,5 +1,4 @@
 'use strict'
-const EventEmitter = require('events')
 
 /**
  * Logging feature for [lws](https://github.com/lwsjs/lws).
@@ -9,7 +8,7 @@ const EventEmitter = require('events')
 /**
  * @alias module:lws-log
  */
-class Log extends EventEmitter {
+class Log {
   description () {
     return 'Log to the console or stats views.'
   }
@@ -29,40 +28,48 @@ class Log extends EventEmitter {
    * @emits start
    */
   middleware (options) {
-    let format = options.logFormat || 'stats'
+    const combinedFmt = ':remote-addr - :remote-user [:date[iso]] ":method :url HTTP/:http-version" :status :res[content-length]'
+    let format = options.logFormat || combinedFmt
 
-    if (options.verbose && format === 'stats') {
-      format = 'dev'
-    }
     if (format !== 'none') {
       const morgan = require('koa-morgan')
 
       const Writable = require('stream').Writable
       const logStream = new Writable()
       logStream._write = ((chunk, enc, done) => {
-        this.emit('log', chunk.toString('utf8').trim() + '\n')
+        this.view.write('log', chunk.toString('utf8').trim())
         done()
       })
       let stream = logStream
 
-      /* no format specified - print stats to terminal */
-      if (format === 'stats') {
-        const streamLogStats = require('stream-log-stats')
-        stream = streamLogStats({ refreshRate: 500 })
-        format = 'combined'
-
       /* logstalgia-specific output */
-      } else if (format === 'logstalgia') {
+      if (format === 'logstalgia') {
         morgan.token('date', () => {
           var d = new Date()
           return (`${d.getDate()}/${d.getUTCMonth()}/${d.getFullYear()}:${d.toTimeString()}`).replace('GMT', '').replace(' (BST)', '')
         })
         format = 'combined'
       }
-      this.emit('start', { format, stream })
+      this.view.write('log.start', {})
       return morgan(format, { stream })
     } else {
-      this.emit('start', {})
+      this.view.write('log.start', {})
+    }
+  }
+}
+
+function clf (log) {
+  const re = /([^ ]*) ([^ ]*) ([^ ]*) \[([^\]]*)\] "([^"]*)" ([^ ]*) ([^ ]*)/;
+  const matches = log.match(re);
+  if (matches){
+    return {
+      remoteHost: matches[1],
+      remoteLogName: matches[2],
+      authUser: matches[3],
+      date: new Date(matches[4]),
+      request: matches[5],
+      status: Number(matches[6]),
+      bytes: Number(matches[7]) || 0
     }
   }
 }
