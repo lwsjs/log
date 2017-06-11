@@ -1,5 +1,3 @@
-'use strict'
-
 /**
  * Logging feature for [lws](https://github.com/lwsjs/lws).
  * @module lws-log
@@ -10,14 +8,14 @@
  */
 class Log {
   description () {
-    return 'Log to the console or stats views.'
+    return 'Outputs an access log or stats view to the console.'
   }
   optionDefinitions () {
     return [{
       name: 'log.format',
       alias: 'f',
       type: String,
-      description: "If a format is supplied an access log is written to stdout. If not, a dynamic statistics view is displayed. Use a preset ('none', 'dev','combined', 'short', 'tiny', 'stats', or 'logstalgia') or supply a custom format (e.g. ':method -> :url')."
+      description: "Possible values: 'stats', 'logstalgia' or anything defined by https://github.com/expressjs/morgan, typically 'dev', 'combined', 'short', 'tiny' or a custom format (e.g. ':method -> :url')"
     }]
   }
 
@@ -28,19 +26,18 @@ class Log {
    * @emits start
    */
   middleware (options) {
-    const combinedFmt = ':remote-addr - :remote-user [:date[iso]] ":method :url HTTP/:http-version" :status :res[content-length]'
-    let format = options.logFormat || combinedFmt
+    this.view.write('log-start', options)
+    let format = options.logFormat || 'none'
 
     if (format !== 'none') {
       const morgan = require('koa-morgan')
 
       const Writable = require('stream').Writable
-      const logStream = new Writable()
-      logStream._write = ((chunk, enc, done) => {
+      const stream = new Writable()
+      stream._write = ((chunk, enc, done) => {
         this.view.write('log', chunk.toString('utf8').trim())
         done()
       })
-      let stream = logStream
 
       /* logstalgia-specific output */
       if (format === 'logstalgia') {
@@ -50,10 +47,8 @@ class Log {
         })
         format = 'combined'
       }
-      this.view.write('log.start', {})
+      this.view.write('log-start', options)
       return morgan(format, { stream })
-    } else {
-      this.view.write('log.start', {})
     }
   }
 }
