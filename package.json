@@ -18,6 +18,7 @@
     "docs": "jsdoc2md --template README.hbs index.js  > README.md; echo"
   },
   "dependencies": {
-    "koa-morgan": "^1.0.1"
+    "koa-morgan": "^1.0.1",
+    "stream-log-stats": "^2.0.2"
   }
 }

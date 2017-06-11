@@ -31,16 +31,15 @@ class Log {
 
     if (format !== 'none') {
       const morgan = require('koa-morgan')
+      let stream
 
-      const Writable = require('stream').Writable
-      const stream = new Writable()
-      stream._write = ((chunk, enc, done) => {
-        this.view.write('log', chunk.toString('utf8').trim())
-        done()
-      })
+      if (format === 'stats') {
+        const streamLogStats = require('stream-log-stats')
+        stream = streamLogStats({ refreshRate: 500 })
+        format = 'combined'
 
       /* logstalgia-specific output */
-      if (format === 'logstalgia') {
+      } else if (format === 'logstalgia') {
         morgan.token('date', () => {
           var d = new Date()
           return (`${d.getDate()}/${d.getUTCMonth()}/${d.getFullYear()}:${d.toTimeString()}`).replace('GMT', '').replace(' (BST)', '')
