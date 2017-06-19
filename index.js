@@ -26,7 +26,7 @@ class Log {
    * @emits start
    */
   middleware (options) {
-    this.view.write('log-start', options)
+    this.view.write('log-start', { format: options.logFormat })
     let format = options.logFormat || 'none'
 
     if (format !== 'none') {
@@ -46,7 +46,6 @@ class Log {
         })
         format = 'combined'
       }
-      this.view.write('log-start', options)
       return morgan(format, { stream })
     }
   }
