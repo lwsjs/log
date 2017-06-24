@@ -6,7 +6,7 @@
 /**
  * @alias module:lws-log
  */
-class Log {
+module.exports = MiddlewareBase => class Log extends MiddlewareBase {
   description () {
     return 'Outputs an access log or stats view to the console.'
   }
@@ -19,17 +19,11 @@ class Log {
     }]
   }
 
-  /**
-   * @param [options] {object}
-   * @param [options.log.format] {string}
-   * @emits log
-   * @emits start
-   */
   middleware (options) {
-    this.view.write('log-start', { format: options.logFormat })
-    let format = options.logFormat || 'none'
+    let format = options.logFormat
 
-    if (format !== 'none') {
+    if (format) {
+      this.emit('verbose', 'middleware.log.config', { logFormat: options.logFormat })
       const morgan = require('koa-morgan')
       let stream
 
@@ -50,21 +44,3 @@ class Log {
     }
   }
 }
-
-function clf (log) {
-  const re = /([^ ]*) ([^ ]*) ([^ ]*) \[([^\]]*)\] "([^"]*)" ([^ ]*) ([^ ]*)/;
-  const matches = log.match(re);
-  if (matches){
-    return {
-      remoteHost: matches[1],
-      remoteLogName: matches[2],
-      authUser: matches[3],
-      date: new Date(matches[4]),
-      request: matches[5],
-      status: Number(matches[6]),
-      bytes: Number(matches[7]) || 0
-    }
-  }
-}
-
-module.exports = Log
