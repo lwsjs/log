@@ -321,8 +321,8 @@ lodash.throttle@^4.1.1:
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
 
 lws@^1.0.0-pre2.0:
-  version "1.0.0-pre2.0"
-  resolved "https://registry.yarnpkg.com/lws/-/lws-1.0.0-pre2.0.tgz#310cf037ec4c171d2c38cc1db6792adf94bc5819"
+  version "1.0.0-pre2.1"
+  resolved "https://registry.yarnpkg.com/lws/-/lws-1.0.0-pre2.1.tgz#2b7a2189219f6c5d1001e39e86475d0543ac2c26"
   dependencies:
     ansi-escape-sequences "^3.0.0"
     array-back "^1.0.4"
