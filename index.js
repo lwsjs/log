@@ -1,11 +1,3 @@
-/**
- * Logging feature for [lws](https://github.com/lwsjs/lws).
- * @module lws-log
- */
-
-/**
- * @alias module:lws-log
- */
 module.exports = MiddlewareBase => class Log extends MiddlewareBase {
   description () {
     return 'Outputs an access log or stats view to the console.'
