@@ -5,7 +5,7 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 # lws-log
-Logging middleware for [lws](https://github.com/lwsjs/lws). See [here](https://github.com/lwsjs/local-web-server/wiki/How-to-output-an-access-log) for usage information.
+Logging middleware for [lws](https://github.com/lwsjs/lws), wrapping [morgan](https://github.com/expressjs/morgan). See [here](https://github.com/lwsjs/local-web-server/wiki/How-to-output-an-access-log) for usage information.
 
 * * *
 

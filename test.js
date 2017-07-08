@@ -8,7 +8,7 @@ const runner = new TestRunner()
 runner.test('simple', async function () {
   const port = 8000 + this.index
   const lws = new Lws()
-  const server = lws.create({ port, stack: Log, logFormat: 'combined' })
+  const server = lws.listen({ port, stack: Log, logFormat: 'combined' })
   const response = await request(`http://localhost:${port}/`)
   server.close()
 })
