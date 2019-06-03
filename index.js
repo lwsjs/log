@@ -1,7 +1,10 @@
-module.exports = MiddlewareBase => class Log extends MiddlewareBase {
+const EventEmitter = require('events')
+
+class Log extends EventEmitter {
   description () {
     return 'Outputs an access log or stats view to the console.'
   }
+
   optionDefinitions () {
     return [{
       name: 'log.format',
@@ -11,11 +14,11 @@ module.exports = MiddlewareBase => class Log extends MiddlewareBase {
     }]
   }
 
-  middleware (options) {
-    let format = options.logFormat
+  middleware (config) {
+    let format = config.logFormat
 
     if (format) {
-      this.emit('verbose', 'middleware.log.config', { logFormat: options.logFormat })
+      this.emit('verbose', 'middleware.log.config', { logFormat: config.logFormat })
       const morgan = require('koa-morgan')
       let stream
 
@@ -36,3 +39,5 @@ module.exports = MiddlewareBase => class Log extends MiddlewareBase {
     }
   }
 }
+
+module.exports = Log

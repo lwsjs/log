@@ -7,11 +7,10 @@
   "license": "MIT",
   "keywords": [
     "lws",
-    "log",
-    "lws-feature"
+    "log"
   ],
   "engines": {
-    "node": ">=7.6.0"
+    "node": ">=8"
   },
   "scripts": {
     "test": "test-runner test.js"
@@ -21,8 +20,11 @@
     "stream-log-stats": "^2.0.2"
   },
   "devDependencies": {
-    "lws": "^1.0.0-pre4.0",
-    "req-then": "^0.6.4",
-    "test-runner": "^0.4.0"
-  }
+    "lws": "^2.0.0-7",
+    "node-fetch": "^2.6.0",
+    "test-runner": "^0.6.0"
+  },
+  "files": [
+    "index.js"
+  ]
 }
