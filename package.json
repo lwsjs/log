@@ -17,10 +17,10 @@
   },
   "dependencies": {
     "koa-morgan": "^1.0.1",
-    "stream-log-stats": "^2.0.2"
+    "stream-log-stats": "^3.0.0"
   },
   "devDependencies": {
-    "lws": "^2.0.0-7",
+    "lws": "^2.0.0-9",
     "node-fetch": "^2.6.0",
     "test-runner": "^0.6.0"
   },
