@@ -7,6 +7,14 @@
 # lws-log
 Logging middleware for [lws](https://github.com/lwsjs/lws), wrapping [morgan](https://github.com/expressjs/morgan). See [here](https://github.com/lwsjs/local-web-server/wiki/How-to-output-an-access-log) for usage information.
 
+Adds the following options to lws.
+
+```
+--log.format, -f string        Possible values: 'stats', 'logstalgia' or anything defined by
+                               https://github.com/expressjs/morgan, typically 'dev', 'combined', 'short',
+                               'tiny' or a custom format (e.g. ':method -> :url')
+```
+
 * * *
 
 &copy; 2016-19 Lloyd Brookes \<75pound@gmail.com\>.
