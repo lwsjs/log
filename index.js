@@ -1,4 +1,6 @@
-const EventEmitter = require('events')
+import EventEmitter from 'events'
+import morgan from 'koa-morgan'
+import streamLogStats from 'stream-log-stats'
 
 class Log extends EventEmitter {
   description () {
@@ -19,11 +21,9 @@ class Log extends EventEmitter {
 
     if (format) {
       this.emit('verbose', 'middleware.log.config', { logFormat: config.logFormat })
-      const morgan = require('koa-morgan')
       let stream
 
       if (format === 'stats') {
-        const streamLogStats = require('stream-log-stats')
         stream = streamLogStats({ refreshRate: 500 })
         format = 'combined'
 
@@ -40,4 +40,4 @@ class Log extends EventEmitter {
   }
 }
 
-module.exports = Log
+export default Log

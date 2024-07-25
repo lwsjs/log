@@ -3,7 +3,12 @@
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "version": "2.0.0",
   "description": "Logging feature for lws",
-  "repository": "https://github.com/lwsjs/log.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lwsjs/log.git"
+  },
+  "type": "module",
+  "exports": "./index.js",
   "license": "MIT",
   "keywords": [
     "lws",
@@ -11,7 +16,7 @@
     "log"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
     "test": "test-runner test.js"
@@ -21,9 +26,9 @@
     "stream-log-stats": "^3.0.2"
   },
   "devDependencies": {
-    "lws": "^2.0.8",
-    "node-fetch": "^2.6.0",
-    "test-runner": "^0.8.13"
+    "lws": "^4.1.4",
+    "node-fetch": "^3.3.2",
+    "test-runner": "^0.11.0"
   },
   "files": [
     "index.js"
